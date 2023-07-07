@@ -2,15 +2,5 @@
   "db": {
     "name": "db",
     "connector": "memory"
-  },
-  "mongodb": {
-    "name": "mongodb",
-    "host": "172.17.0.2",
-    "port": 27017,
-    "url": "",
-    "database": "MEAN_Q_A",
-    "password": "",
-    "user": "",
-    "connector": "mongodb"
   }
 }

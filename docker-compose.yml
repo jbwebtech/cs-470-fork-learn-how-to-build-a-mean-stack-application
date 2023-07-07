@@ -1,12 +1,31 @@
-version: '3.4'
+version: '3.7'
+
+name: lafs-api-stack
 
 services:
-  learnangularfromscratchstepbystepapi:
-    image: learnangularfromscratchstepbystepapi
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+  lafs-api:
+    container_name: lafs-api
+    image: lafs-api:latest
+    restart: always
+    build: .
     environment:
-      NODE_ENV: production
+      DB_HOST: "lafs-db"
+      DB_PORT: 27017
+      DB_USER: ""
+      DB_PASSWORD: ""
+      DB_NAME: "lafs"
+      DB_URL: "mongodb://lafs-db:27017/lafs"
     ports:
       - 3000:3000
+    links:
+      - lafs-db
+  lafs-db:
+    container_name: lafs-db
+    image: mongo:4
+    ports:
+      - 27017:27017
+
+networks:
+  default:
+    external:
+      name: lafs-net
